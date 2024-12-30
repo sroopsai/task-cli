@@ -1,6 +1,4 @@
-java -jar target/task-cli-1.0-SNAPSHOT.jar
-
-Task CLI is a simple command-line interface application for managing tasks. It allows users to add, view, and update tasks with ease.
+# Task CLI is a simple command-line interface application for managing tasks. It allows users to add, view, and update tasks with ease.
 
 ## Features
 
