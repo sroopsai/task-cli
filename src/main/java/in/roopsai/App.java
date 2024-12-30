@@ -46,6 +46,14 @@ public class App {
                         }
                     }
 
+                    case "delete" -> {
+                        if (argument.isEmpty()) {
+                            System.out.println("Please provide the ID of the task to delete.");
+                        } else {
+                            Task.deleteTask(UUID.fromString(argument));
+                        }
+                    }
+
                     case "exit" -> {
                         break start;
                     }

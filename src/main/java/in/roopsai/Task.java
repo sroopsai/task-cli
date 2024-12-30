@@ -111,6 +111,33 @@ public record Task(UUID id, String description, Status status, LocalDateTime cre
         }, () -> System.out.println("Task with id " + taskId + " not found"));
     }
 
+    public static void deleteTask(UUID taskId) {
+        File taskFile = new File(FILE_NAME);
+        try {
+            if (taskFile.exists()) {
+                List<Task> tasks = objectMapper.readValue(taskFile, new TypeReference<>() {
+                });
+                tasks.removeIf(task -> task.id().equals(taskId));
+                saveToFileValues(tasks);
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading tasks from file: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Saves the given list of tasks to the file.
+     *
+     * @param tasks The list of tasks to be saved to the file.
+     */
+    public static void saveToFileValues(List<Task> tasks) {
+        try {
+            objectMapper.writeValue(new File(FILE_NAME), tasks);
+        } catch (IOException e) {
+            System.out.println("Error saving tasks to file: " + e.getMessage());
+        }
+    }
+
     /**
      * Saves the current tasks to the file.
      */
@@ -118,7 +145,7 @@ public record Task(UUID id, String description, Status status, LocalDateTime cre
         try {
             objectMapper.writeValue(new File(FILE_NAME), tasks.values());
         } catch (IOException e) {
-            System.out.println("Error saving task to file: " + e.getMessage());
+            System.out.println("Error saving tasks to file: " + e.getMessage());
         }
     }
 }

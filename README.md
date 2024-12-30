@@ -38,6 +38,7 @@ The application supports the following commands:
 3. View tasks filtered by status: ```list <status>```
 4. Mark A task as In_Progress: ```mark-in-progress <task_id>```
 5. Mark a task as Done: ```mark-done <task_id>```
+6. Delete a task: ```delete <task_id>```
 
 Replace `<task_id>` with the ID of the task you want to update.
 
