@@ -1,9 +1,10 @@
 package in.roopsai;
 
+import java.util.UUID;
+
 public class App {
 
     public static void main(String[] args) {
-
 
         start:
         while (true) {
@@ -15,12 +16,36 @@ public class App {
                 switch (command) {
                     case "add" -> {
                         if (!argument.isEmpty()) {
-                            Task.create(argument);
+                            Task.add(argument);
                         } else {
                             System.out.println("Please provide a description for the task.");
                         }
                     }
-                    case "list" -> Task.readAllTasks();
+                    case "list" -> {
+                        if (argument.isEmpty()) {
+                            Task.readAllTasks();
+                        } else {
+                            Status status = Status.valueOf(argument.toUpperCase());
+                            Task.readTasksBasedOnStatus(status);
+                        }
+
+                    }
+                    case "mark-in-progress" -> {
+                        if (argument.isEmpty()) {
+                            System.out.println("Please provide the ID of the task to mark as in progress.");
+                        } else {
+                            Task.markAsStatus(UUID.fromString(argument), Status.IN_PROGRESS);
+                        }
+                    }
+
+                    case "mark-done" -> {
+                        if (argument.isEmpty()) {
+                            System.out.println("Please provide the ID of the task to mark as done.");
+                        } else {
+                            Task.markAsStatus(UUID.fromString(argument), Status.COMPLETED);
+                        }
+                    }
+
                     case "exit" -> {
                         break start;
                     }
