@@ -50,4 +50,6 @@ Tasks are stored in a file named tasks.json in the same directory as the JAR fil
 Contributing
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+## License
 
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
